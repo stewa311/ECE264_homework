@@ -1,0 +1,16 @@
+    for(int i=0; i <= size - strlen(word); i++)
+    {
+        found = 1;
+        for(int j=0; j < strlen(word); j++)
+        {
+            if(line[i + j] != word[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+
+        if(found == 1)
+        {
+            sum++;
+        }

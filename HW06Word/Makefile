@@ -19,7 +19,7 @@ hw06: $(OBJS)
 .c.o: 
 	$(GCC) $(TESTFALGS) -c $*.c 
 
-testall: test1 test2 test3 test4 test5 test6
+testall: test1 test2 test3 test4 test5 test6 test7
 
 test1: hw06
 	./hw06 inputs/input1 "on" > output1
@@ -44,6 +44,10 @@ test5: hw06
 test6: hw06
 	./hw06 inputs/input6 "aa" > output6
 	diff -w output6 expected/expected6
+	
+test7: hw06
+	./hw06 inputs/input7 "we" > output7
+	diff -w output7 expected/expected7
 
 
 clean: # remove all machine generated files

@@ -17,6 +17,15 @@ int countWord(char * filename, char * word, char * line, int size)
   // if fopen fails, return -1. 
   // if fopen succeeds, set sum to zero
   // use fgets to read the file
+  
+  FILE * fptr = fopen(filename, "r");
+  if (fptr == NULL)
+  {
+    return -1;
+  }
+  
+  int sum = 0;
+  
   // if word appears in a line, add one to sum
   //
   // It is possible that the same word appears multiple times in a line
@@ -32,6 +41,17 @@ int countWord(char * filename, char * word, char * line, int size)
   // the first match occurs. Thus, the next match starts at the third
   // character. For this case, the correct answer is 2, not 4.
   
-  return 0;
+  const char *p, *lastfind = NULL;
+  
+  while (fgets(line, size, fptr))
+  {
+    for(p = line; (lastfind = strstr(p, word)); p = lastfind + strlen(word))
+    {
+      sum++;
+    }
+  }
+  
+  fclose(fptr);
+  return sum;
 }
 #endif
