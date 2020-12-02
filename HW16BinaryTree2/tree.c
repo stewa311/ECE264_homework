@@ -99,14 +99,34 @@ Tree * buildTree(int * inArray, int * postArray, int size)
 #endif
 
 #ifdef TEST_PRINTPATH
-void printNode(TreeNode * tn)
-{
+int printNode(TreeNode * tn, int val)
+{ 
   if (tn == NULL)
   {
-    return;
+    return 0;
   }
-  printNode(tn -> left);
-  printf("%d\n", tn -> value);
+  
+  if(tn->value == val)
+  {
+    printf("%d\n", tn -> value);
+    return 1;
+  }
+  
+  if(printNode(tn->right, val))
+  {
+    printf("%d\n", tn -> value);
+    return 1;
+  }
+  
+  if(printNode(tn->left, val))
+  {
+    printf("%d\n", tn -> value);
+    return 1;
+  }
+  
+  printNode(tn->right, val);
+  printNode(tn->left, val);
+  return 0;
 }
 
 void printPath(Tree * tr, int val)
@@ -116,6 +136,7 @@ void printPath(Tree * tr, int val)
   {
     return;
   }
-  printNode(tr->root);
+  
+  printNode(tr->root, val);
 }
 #endif
