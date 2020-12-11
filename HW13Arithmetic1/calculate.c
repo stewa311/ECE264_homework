@@ -68,7 +68,7 @@ bool calculate(List * arithlist)
   int o;
   while (h -> next != NULL)
   {
-    if (o = isOperator(h) != -1)
+    if ((o = isOperator(h)) != -1)
     {
       Node * p = h -> prev;
       Node * q = p -> prev;
